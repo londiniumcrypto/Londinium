@@ -242,10 +242,10 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop Northern server.");
+            "\nStop Londinium server.");
     // Shutdown will take long enough that the response should get back
     StartShutdown();
-    return "Northern server stopping";
+    return "Londinium server stopping";
 }
 
 
@@ -327,33 +327,33 @@ static const CRPCCommand vRPCCommands[] =
         {"hidden", "reconsiderblock", &reconsiderblock, true, true, false},
         {"hidden", "setmocktime", &setmocktime, true, false, false},
 
-        /* Northern features */
-        {"northern", "masternode", &masternode, true, true, false},
-        {"northern", "listmasternodes", &listmasternodes, true, true, false},
-        {"northern", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"northern", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"northern", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"northern", "masternodedebug", &masternodedebug, true, true, false},
-        {"northern", "startmasternode", &startmasternode, true, true, false},
-        {"northern", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"northern", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"northern", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"northern", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"northern", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"northern", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"northern", "mnbudget", &mnbudget, true, true, false},
-        {"northern", "preparebudget", &preparebudget, true, true, false},
-        {"northern", "submitbudget", &submitbudget, true, true, false},
-        {"northern", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"northern", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"northern", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"northern", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"northern", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"northern", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"northern", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"northern", "checkbudgets", &checkbudgets, true, true, false},
-        {"northern", "mnsync", &mnsync, true, true, false},
-        {"northern", "spork", &spork, true, true, false},
+        /* Londinium features */
+        {"londinium", "masternode", &masternode, true, true, false},
+        {"londinium", "listmasternodes", &listmasternodes, true, true, false},
+        {"londinium", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"londinium", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"londinium", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"londinium", "masternodedebug", &masternodedebug, true, true, false},
+        {"londinium", "startmasternode", &startmasternode, true, true, false},
+        {"londinium", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"londinium", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"londinium", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"londinium", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"londinium", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"londinium", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"londinium", "mnbudget", &mnbudget, true, true, false},
+        {"londinium", "preparebudget", &preparebudget, true, true, false},
+        {"londinium", "submitbudget", &submitbudget, true, true, false},
+        {"londinium", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"londinium", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"londinium", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"londinium", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"londinium", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"londinium", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"londinium", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"londinium", "checkbudgets", &checkbudgets, true, true, false},
+        {"londinium", "mnsync", &mnsync, true, true, false},
+        {"londinium", "spork", &spork, true, true, false},
 #ifdef ENABLE_WALLET
 
         /* Wallet */
@@ -1070,14 +1070,14 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> northern-cli " + methodname + " " + args + "\n";
+    return "> londinium-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)
 {
     return "> curl --user myusername --data-binary '{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", "
            "\"method\": \"" +
-           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:9332/\n";
+           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:9556/\n";
 }
 
 const CRPCTable tableRPC;

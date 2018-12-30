@@ -1,0 +1,26 @@
+# /etc/conf.d/londiniumd: config file for /etc/init.d/londiniumd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/londinium/londinium.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/londiniumd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/londiniumd.pid"
+
+# Where to write londiniumd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/londiniumd"
+
+# User and group to own londiniumd process
+#BITCOIND_USER="londinium"
+#BITCOIND_GROUP="londinium"
+
+# Path to londiniumd executable
+#BITCOIND_BIN="/usr/bin/londiniumd"
+
+# Nice value to run londiniumd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

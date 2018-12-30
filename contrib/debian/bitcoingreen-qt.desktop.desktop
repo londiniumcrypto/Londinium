@@ -1,11 +1,11 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=Northern
-Comment=Northern P2P Cryptocurrency
-Exec=northern-qt %u
+Name=Londinium
+Comment=Londinium P2P Cryptocurrency
+Exec=londinium-qt %u
 Terminal=false
 Type=Application
-Icon=northern128
-MimeType=x-scheme-handler/northern;
+Icon=londinium128
+MimeType=x-scheme-handler/londinium;
 Categories=Office;Finance;
-Name[en_US]=northern-qt.desktop
+Name[en_US]=londinium-qt.desktop
