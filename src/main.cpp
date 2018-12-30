@@ -77,7 +77,7 @@ bool fCheckBlockIndex = false;
 unsigned int nCoinCacheSize = 5000;
 bool fAlerts = DEFAULT_ALERTS;
 
-unsigned int nStakeMinAge = 60 * 60;
+unsigned int nStakeMinAge = 6 * 60 * 60;
 int64_t nReserveBalance = 0;
 
 /** Fees smaller than this (in ulon) are considered zero fee (for relaying and mining)
@@ -1624,21 +1624,27 @@ int64_t GetBlockValue(int nHeight)
     }
 
     if (nHeight < Params().LAST_POW_BLOCK())
-        nSubsidy = 10000 * COIN;
-    else if (nHeight <= 30000)
-        nSubsidy = 5 * COIN;
-    else if (nHeight > 30000 && nHeight <= 200000)
-        nSubsidy = 3.75 * COIN;
-    else if (nHeight > 200000 && nHeight <= 500000)
-        nSubsidy = 2.5 * COIN;
-    else if (nHeight > 500000 && nHeight <= 900000)
-        nSubsidy = 1.25 * COIN;
-    else if (nHeight > 900000 && nHeight <= 1500000)
-        nSubsidy = 0.5 * COIN;
-    else if (nHeight > 1500000 && nHeight <= 6000000)
-        nSubsidy = 0.25 * COIN;
+        nSubsidy = 750 * COIN;
+    else if (nHeight <= 259200)
+        nSubsidy = 2.6 * COIN;
+    else if (nHeight > 259200 && nHeight <= 518400)
+        nSubsidy = 2.4 * COIN;
+    else if (nHeight > 518400 && nHeight <= 777600)
+        nSubsidy = 2.2 * COIN;
+    else if (nHeight > 777600 && nHeight <= 1036800)
+        nSubsidy = 2 * COIN;
+    else if (nHeight > 1036800 && nHeight <= 1296000)
+        nSubsidy = 1.8 * COIN;
+    else if (nHeight > 1296000 && nHeight <= 1555200)
+        nSubsidy = 1.6 * COIN;
+    else if (nHeight > 1555200 && nHeight <= 1814400)
+        nSubsidy = 1.4 * COIN;
+    else if (nHeight > 1814400 && nHeight <= 2073600)
+        nSubsidy = 1.2 * COIN;
+    else if (nHeight > 2073600 && nHeight <= 2592000)
+        nSubsidy = 1 * COIN;
     else
-        nSubsidy = 0.125 * COIN;
+        nSubsidy = 0.5 * COIN;
 
     // Check if we reached the coin max supply.
     int64_t nMoneySupply = chainActive.Tip()->nMoneySupply;
@@ -1661,7 +1667,7 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
         return 0;
 
     // Check if we reached coin supply
-    ret = blockValue * 0.85; // 85% of block reward
+    ret = blockValue * 0.9; // 90% of block reward
 
     return ret;
 }
@@ -1837,7 +1843,7 @@ bool CheckInputs(const CTransaction& tx, CValidationState& state, const CCoinsVi
 {
     
 	CBlockIndex* pindexPrev = mapBlockIndex.find(inputs.GetBestBlock())->second;
-	if (!tx.IsCoinBase() && pindexPrev->nHeight >= 270000) {
+	if (!tx.IsCoinBase()) {
         if (pvChecks)
             pvChecks->reserve(tx.vin.size());
 
@@ -1873,18 +1879,18 @@ bool CheckInputs(const CTransaction& tx, CValidationState& state, const CCoinsVi
         }
 
         if (!tx.IsCoinStake()) {
-             if (nValueIn < tx.GetValueOut() && pindexPrev->nHeight >= 270000)
+             if (nValueIn < tx.GetValueOut())
                 return state.DoS(100, error("CheckInputs() : %s value in (%s) < value out (%s)",
                                           tx.GetHash().ToString(), FormatMoney(nValueIn), FormatMoney(tx.GetValueOut())),
                      REJECT_INVALID, "bad-txns-in-belowout");
 
              
             CAmount nTxFee = nValueIn - tx.GetValueOut();
-            if (nTxFee < 0 && pindexPrev->nHeight >= 270000)
+            if (nTxFee < 0)
                 return state.DoS(100, error("CheckInputs() : %s nTxFee < 0", tx.GetHash().ToString()),
                     REJECT_INVALID, "bad-txns-fee-negative");
             nFees += nTxFee;
-            if (!MoneyRange(nFees) && pindexPrev->nHeight >= 270000)
+            if (!MoneyRange(nFees))
                 return state.DoS(100, error("CheckInputs() : nFees out of range"),
                     REJECT_INVALID, "bad-txns-fee-outofrange");
         }
