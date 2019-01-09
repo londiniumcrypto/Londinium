@@ -740,11 +740,11 @@ QDialog#RPCConsole QWidget#tab_info QLabel#label_11, QDialog#RPCConsole QWidget#
 }
 
 QDialog#RPCConsole QWidget#tab_peers QLabel#peerHeading { /* Peers Info Header */
-	color:#dcf442;
+	color:#000000;
 }
 
 QDialog#RPCConsole QTableView#peerWidget::item { /* Peers Table Items */
-	color:#003046;
+	color:#000000;
 }
 
 QDialog#RPCConsole QPushButton#openDebugLogfileButton {
